@@ -47,4 +47,8 @@ function flowField(particleColour, backgroundColour) {
   return sketch;
 }
 
-window.onload = function () { new p5(flowField('#0000ff10','#000000'), 'flowfield'); } 
+window.onload = function () {
+  const particleColor = $('#flowfield').css("color");
+  const backgroundColor = $('#flowfield').css("background-color");
+  new p5(flowField(particleColor, backgroundColor), 'flowfield');
+}
