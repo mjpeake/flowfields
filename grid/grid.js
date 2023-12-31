@@ -27,7 +27,7 @@ export class Grid {
     getCellAtPos(position) {
         const x = Math.floor(position.x / (this.p.width / this.cellCountX));
         const y = Math.floor(position.y / (this.p.height / this.cellCountY));
-        return this.cells[x][y];
+        return (x >= 0 && x < this.cellCountX && y >= 0 && y < this.cellCountY) ? this.cells[x][y] : null;
     }
 
     draw(color) {

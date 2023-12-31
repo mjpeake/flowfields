@@ -3,14 +3,15 @@ import { Grid } from "./grid/grid.js";
 
 let debug = false;
 
-function flowField(particleColour, backgroundColour) {
+function flowfield(cfg) {
   const sketch = (p) => {
     p.setup = function () {
       //Params
-      p.flowCount = 10000;
-      p.clearBackground = false;
-      p.backgroundColor = p.color(backgroundColour);
-      p.particleColor = p.color(particleColour);
+      p.particleCount = cfg.particleCount;
+      p.particleContain = cfg.particleContain;
+      p.backgroundRefresh = cfg.backgroundRefresh;
+      p.backgroundColor = p.color(cfg.backgroundColor);
+      p.particleColor = p.color(cfg.particleColor);
 
       // Determine size of parent div
       const div = p.canvas.parentElement;
@@ -22,11 +23,11 @@ function flowField(particleColour, backgroundColour) {
 
       // Create particles
       p.particles = [];
-      for (let i = 0; i < p.flowCount; i++) p.particles.push(new Particle(p));
+      for (let i = 0; i < p.particleCount; i++) p.particles.push(new Particle(p));
     }
 
     p.draw = function () {
-      if (p.clearBackground) {
+      if (p.backgroundRefresh) {
         p.background(p.backgroundColor);
       }
       if (debug) {
@@ -35,8 +36,12 @@ function flowField(particleColour, backgroundColour) {
 
       // Draw particles
       for (const particle of p.particles) {
-        particle.update();
-        particle.drawLine(p.particleColor);
+        if (particle.onCanvas()) {
+          particle.update();
+          particle.drawLine(p.particleColor);
+        } else if (p.particleContain) {
+          particle.contain();
+        }
       }
     }
 
@@ -48,7 +53,12 @@ function flowField(particleColour, backgroundColour) {
 }
 
 window.onload = function () {
-  const particleColor = $('#flowfield').css("color");
-  const backgroundColor = $('#flowfield').css("background-color");
-  new p5(flowField(particleColor, backgroundColor), 'flowfield');
+  const cfg = {
+    particleCount: 10000,
+    particleContain: false,
+    particleColor: $('#flowfield').css("color"),
+    backgroundColor: $('#flowfield').css("background-color"),
+    backgroundRefresh: false,
+  }
+  new p5(flowfield(cfg), 'flowfield');
 }
