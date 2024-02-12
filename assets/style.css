@@ -1,12 +1,35 @@
-html, body {
+html,
+body {
   height: 100%;
   padding: 0;
   margin: 0;
 }
 
-#flowfield {
+#flowfield-trace {
   height: 100%;
   overflow: hidden;
   color: rgba(255, 0, 0, 0.033);
   background-color: black;
+}
+
+#flowfield-dots {
+  height: 100%;
+  overflow: hidden;
+  color: black;
+  background-color: white;
+}
+
+#flowfield-imagetrace {
+  height: 100%;
+  overflow: hidden;
+  background-image: url(./img/uk.svg);
+  background-size: 0 !important;
+  background-color: white;
+}
+
+#flowfield-line {
+  height: 100%;
+  overflow: hidden;
+  color: lightblue;
+  background-color: darkblue;
 }

@@ -1,64 +1,36 @@
-import { Particle } from "./particle/particle.js";
-import { Grid } from "./grid/grid.js";
+import { TraceField } from "./fields/tracefield.js";
+import { DotField } from "./fields/dotfield.js";
+import { ImageTraceField } from "./fields/imagetracefield.js";
+import { LineField } from "./fields/linefield.js";
 
-let debug = false;
+const traceElement = "flowfield-trace"
+const dotsElement = "flowfield-dots"
+const imgTraceElement = "flowfield-imagetrace"
+const lineElement = "flowfield-line"
 
-function flowfield(cfg) {
-  const sketch = (p) => {
-    p.setup = function () {
-      //Params
-      p.particleCount = cfg.particleCount;
-      p.particleContain = cfg.particleContain;
-      p.backgroundRefresh = cfg.backgroundRefresh;
-      p.backgroundColor = p.color(cfg.backgroundColor);
-      p.particleColor = p.color(cfg.particleColor);
-
-      // Determine size of parent div
-      const div = p.canvas.parentElement;
-      p.createCanvas(div.offsetWidth, div.offsetHeight);
-      p.background(p.backgroundColor);
-
-      // Create field
-      p.field = new Grid(p, div.offsetWidth, div.offsetHeight);
-
-      // Create particles
-      p.particles = [];
-      for (let i = 0; i < p.particleCount; i++) p.particles.push(new Particle(p));
-    }
-
-    p.draw = function () {
-      if (p.backgroundRefresh) {
-        p.background(p.backgroundColor);
-      }
-      if (debug) {
-        p.field.draw('white');
-      }
-
-      // Draw particles
-      for (const particle of p.particles) {
-        if (particle.onCanvas()) {
-          particle.update();
-          particle.drawLine(p.particleColor);
-        } else if (p.particleContain) {
-          particle.contain();
-        }
-      }
-    }
-
-    p.windowResized = function () {
-      p.setup();
-    }
+document.addEventListener("DOMContentLoaded", (event) => {
+  if (document.getElementById(lineElement) != null) {
+    const color = $('#' + lineElement).css("color");
+    const bgColor = $('#' + lineElement).css("background-color");
+    new p5(LineField(color, bgColor), lineElement);
   }
-  return sketch;
-}
 
-window.onload = function () {
-  const cfg = {
-    particleCount: 10000,
-    particleContain: false,
-    particleColor: $('#flowfield').css("color"),
-    backgroundColor: $('#flowfield').css("background-color"),
-    backgroundRefresh: false,
+  if (document.getElementById(traceElement) != null) {
+    const color = $('#' + traceElement).css("color");
+    const bgColor = $('#' + traceElement).css("background-color");
+    new p5(TraceField(color, bgColor), traceElement);
   }
-  new p5(flowfield(cfg), 'flowfield');
-}
+
+  if (document.getElementById(dotsElement) != null) {
+    const color = $('#' + dotsElement).css("color");
+    const bgColor = $('#' + dotsElement).css("background-color");
+    new p5(DotField(color, bgColor), dotsElement);
+  }
+
+  if (document.getElementById(imgTraceElement) != null) {
+    let imgPath = $('#' + imgTraceElement).css("background-image");
+    imgPath = imgPath.replace(/(url\(|\)|")/g, '');
+    const bgColor = $('#' + imgTraceElement).css("background-color");
+    new p5(ImageTraceField(imgPath, bgColor), imgTraceElement);
+  }
+});

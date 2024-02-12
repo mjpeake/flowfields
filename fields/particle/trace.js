@@ -1,21 +1,22 @@
-export class Particle {
+export class TraceParticle {
   constructor(p) {
     this.p = p;
     this.position = p.createVector(p.random(1, p.width), p.random(1, p.height));
+  }
+
+  draw(color) {
+    if (this.onCanvas()) {
+      this.update();
+      this.drawLine(color);
+    }
   }
 
   update() {
     let currentCell = this.p.field.getCellAtPos(this.position);
     if (currentCell != null) {
       this.prevposition = this.position.copy();
-      this.position.add(currentCell.direction);
+      this.position.add(currentCell.getDirection());
     }
-  }
-
-  drawPoint(color) {
-    this.p.strokeWeight(6);
-    this.p.stroke(color);
-    this.p.point(this.position);
   }
 
   drawLine(color) {
@@ -28,11 +29,5 @@ export class Particle {
     const inX = this.position.x > 0 && this.position.x < this.p.width;
     const inY = this.position.y > 0 && this.position.y < this.p.height;
     return inX && inY
-  }
-
-  contain() {
-    if (!this.onCanvas()) {
-      this.position = this.p.createVector(this.p.random(this.p.width), this.p.random(this.p.height));
-    }
   }
 }
