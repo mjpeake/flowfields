@@ -1,12 +1,14 @@
-import { TraceParticle } from "./particle/trace.js";
-import { Grid } from "./grid/grid.js";
+const TraceParticle = require("./particle/trace.js")
+const Grid = require("./grid/grid.js")
 
-export function TraceField(color, bgColor) {
+function TraceField(color, bgColor) {
   const sketch = (p) => {
     p.setup = function () {
       //Params
       p.particleDensity = 0.005;
+      p.particleIntensity = 5;
       p.particleColor = p.color(color);
+      p.particleColor.setAlpha(p.particleIntensity);
       p.backgroundColor = p.color(bgColor);
 
       // Determine size of parent div
@@ -36,3 +38,4 @@ export function TraceField(color, bgColor) {
   }
   return sketch;
 }
+module.exports = TraceField;

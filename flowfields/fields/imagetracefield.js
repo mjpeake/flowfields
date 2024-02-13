@@ -1,7 +1,7 @@
-import { TraceParticle } from "./particle/trace.js";
-import { Grid } from "./grid/grid.js";
+const TraceParticle = require("./particle/trace.js")
+const Grid = require("./grid/grid.js")
 
-export function ImageTraceField(imgPath, bgColor) {
+function ImageTraceField(imgPath, bgColor) {
   const sketch = (p) => {
     p.setup = function () {
       //Params
@@ -40,3 +40,4 @@ export function ImageTraceField(imgPath, bgColor) {
   }
   return sketch;
 }
+module.exports = ImageTraceField;

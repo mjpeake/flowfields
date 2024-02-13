@@ -1,4 +1,4 @@
-export class TraceParticle {
+class TraceParticle {
   constructor(p) {
     this.p = p;
     this.position = p.createVector(p.random(1, p.width), p.random(1, p.height));
@@ -31,3 +31,4 @@ export class TraceParticle {
     return inX && inY
   }
 }
+module.exports = TraceParticle;

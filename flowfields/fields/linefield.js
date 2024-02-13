@@ -1,7 +1,7 @@
-import { LineParticle } from "./particle/line.js";
-import { Grid } from "./grid/grid.js";
+const LineParticle = require("./particle/line.js")
+const Grid = require("./grid/grid.js")
 
-export function LineField(color, bgColor) {
+function LineField(color, bgColor) {
     const sketch = (p) => {
         p.setup = function () {
             //Params
@@ -41,3 +41,4 @@ export function LineField(color, bgColor) {
     }
     return sketch;
 }
+module.exports = LineField;

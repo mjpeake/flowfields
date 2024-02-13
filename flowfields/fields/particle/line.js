@@ -1,4 +1,4 @@
-export class LineParticle {
+class LineParticle {
     constructor(p, cell) {
         this.p = p;
         this.cell = cell;
@@ -18,3 +18,4 @@ export class LineParticle {
         this.p.line(start.x, start.y, end.x, end.y);
     }
 }
+module.exports = LineParticle;

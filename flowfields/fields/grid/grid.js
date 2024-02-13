@@ -1,6 +1,6 @@
-import { Cell } from "./cell.js"
+const Cell = require("./cell.js")
 
-export class Grid {
+class Grid {
     constructor(p, width, height, density) {
         if (density == undefined) {
             density = 0.01;
@@ -66,3 +66,4 @@ export class Grid {
         }
     }
 }
+module.exports = Grid;

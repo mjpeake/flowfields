@@ -5,6 +5,13 @@ body {
   margin: 0;
 }
 
+#flowfield {
+  height: 100%;
+  overflow: hidden;
+  color: red;
+  background-color: black;
+}
+
 #flowfield-trace {
   height: 100%;
   overflow: hidden;

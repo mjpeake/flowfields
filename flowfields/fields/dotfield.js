@@ -1,7 +1,7 @@
-import { DotParticle } from "./particle/dot.js";
-import { Grid } from "./grid/grid.js";
+const DotParticle = require("./particle/dot.js")
+const Grid = require("./grid/grid.js")
 
-export function DotField(color, bgColor) {
+function DotField(color, bgColor) {
     const sketch = (p) => {
         p.setup = function () {
             //Params
@@ -41,3 +41,4 @@ export function DotField(color, bgColor) {
     }
     return sketch;
 }
+module.exports = DotField;

@@ -1,4 +1,4 @@
-export class DotParticle {
+class DotParticle {
     constructor(p, cell) {
         this.p = p;
         this.cell = cell;
@@ -11,3 +11,4 @@ export class DotParticle {
         this.p.ellipse(centrePos.x, centrePos.y, this.cell.getNoise() * this.maxSize);
     }
 }
+module.exports = DotParticle;

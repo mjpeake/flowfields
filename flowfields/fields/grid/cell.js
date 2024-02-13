@@ -1,4 +1,4 @@
-export class Cell {
+class Cell {
   constructor(p, col, row, width, height) {
     this.p = p;
 
@@ -34,3 +34,4 @@ export class Cell {
     return this.noise;
   }
 }
+module.exports = Cell;
