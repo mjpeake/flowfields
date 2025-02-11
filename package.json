@@ -1,19 +1,30 @@
 {
   "name": "@mjpeake/flowfields",
-  "version": "1.0.1",
+  "version": "2.0.2",
   "description": "Generative and customisable flow fields using perlin noise",
   "main": "/dist/flowfields.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "start": "webpack serve --config webpack.config.js --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack-cli": "^5.1.4"
+    "@babel/core": "^7.26.7",
+    "@babel/preset-env": "^7.26.7",
+    "@chriscourses/perlin-noise": "^1.0.6",
+    "babel-loader": "^9.2.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.3",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
-    "webpack": "^5.90.1"
+    "@flatten-js/core": "^1.6.2",
+    "gl-matrix": "^3.4.3",
+    "simplex-noise": "^4.0.3"
   }
 }
