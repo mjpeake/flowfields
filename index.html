@@ -5,21 +5,20 @@
   <title>Flow Fields</title>
   <link rel="shortcut icon" type="/image/png" href="https://mattpeake.com/assets/images/logo.png">
   <link rel="stylesheet" href="./assets/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/8.6.6/pixi.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="./dist/flowfields.js"></script>
 </head>
 
 <script>
   $(document).ready(function () {
-    const color = $('#flowfield').css("color");
-    const bgColor = $('#flowfield').css("background-color");
-    new p5(FlowFields.TraceField(color, bgColor), "flowfield");
+    const examples = new FlowFields.Examples()
+    FlowFields.FlowField("flowfield", examples.Random());
   });
 </script>
 
 <body>
-  <div id="flowfield"></div>
+  <canvas id="flowfield"></canvas>
 </body>
 
-</htmL>
+</html>
