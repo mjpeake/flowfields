@@ -15,7 +15,6 @@ function FlowField(id: string = "flowfield", config: Config): void {
         return
     }
     console.log("using config", config)
-    canvas.style.backgroundColor = config.backgroundColor;
     Draw(canvas, config);
 }
 
