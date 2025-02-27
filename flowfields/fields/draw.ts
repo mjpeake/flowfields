@@ -1,5 +1,6 @@
 import Config from './config';
 import DrawFlow from './flow';
+import debounce from 'debounce';
 
 function Draw(canvas: HTMLCanvasElement, config: Config): void {
     (async () => {
@@ -8,17 +9,15 @@ function Draw(canvas: HTMLCanvasElement, config: Config): void {
             console.error(`element with id "${canvas.id}" does not contain canvas.`);
             return
         }
-        ctx.canvas.width = canvas.offsetWidth;
-        ctx.canvas.height = canvas.offsetHeight;
 
-        drawFlows(canvas, config);
-
-        // Resize on window change
-        window.addEventListener('resize', () => {
+        let setup = function() {
             ctx.canvas.width = canvas.offsetWidth;
             ctx.canvas.height = canvas.offsetHeight;
             drawFlows(canvas, config);
-        });
+        }
+        setup();
+        
+        window.onresize = debounce(setup, 100);
     })();
 }
 

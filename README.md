@@ -9,7 +9,7 @@ npm i @mjpeake/flowfields
 
 Alternatively, you can also use the following script tag reference:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@mjpeake/flowfields@2.0.4/dist/flowfields.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mjpeake/flowfields@2.0.5/dist/flowfields.js"></script>
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ To use FlowFields in your project, include the library in your HTML file and ini
   <title>Flow Fields</title>
   <link rel="stylesheet" href="./assets/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mjpeake/flowfields@2.0.4/dist/flowfields.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mjpeake/flowfields@2.0.5/dist/flowfields.js"></script>
 </head>
 
 <body>
