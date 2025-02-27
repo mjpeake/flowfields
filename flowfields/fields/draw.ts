@@ -17,7 +17,13 @@ function Draw(canvas: HTMLCanvasElement, config: Config): void {
         }
         setup();
         
-        window.onresize = debounce(setup, 100);
+        let resize = function() {
+            // Only resize if the canvas size has actually changed
+            if (canvas.offsetWidth != ctx.canvas.width || canvas.offsetHeight != ctx.canvas.height) {
+                setup();
+            }
+        }
+        window.onresize = debounce(resize, 100);
     })();
 }
 
