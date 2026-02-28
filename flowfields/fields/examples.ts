@@ -3,16 +3,19 @@ import Config from './config';
 class Examples {
     Random(): Config {
         const examples = [
-            this.Example1,
-            this.Example2,
-            this.Example3,
-            this.Example4,
-            this.Example5,
-            this.Example6,
-            this.Example7,
-            this.Example8
-        ]
-        return examples[Math.floor(Math.random() * examples.length)]();
+            { name: "Example1", create: this.Example1.bind(this) },
+            { name: "Example2", create: this.Example2.bind(this) },
+            { name: "Example3", create: this.Example3.bind(this) },
+            { name: "Example4", create: this.Example4.bind(this) },
+            { name: "Example5", create: this.Example5.bind(this) },
+            { name: "Example6", create: this.Example6.bind(this) },
+            { name: "Example7", create: this.Example7.bind(this) },
+            { name: "Example8", create: this.Example8.bind(this) },
+        ];
+
+        const selected = examples[Math.floor(Math.random() * examples.length)];
+        console.log(`[FlowFields] Using ${selected.name}`);
+        return selected.create();
     }
 
     Example1(): Config {
@@ -30,14 +33,16 @@ class Examples {
 
     Example2(): Config {
         return new Config({
-            colorDistribution: "random",
-            color: ['#726DA8', '#7D8CC4', '#A0D2DB', '#BEE7E8'],
-            backgroundColor: '#594157',
-            flowDensity: 0.5,
-            flowIntensity: 1,
-            flowWidth: 2,
-            noiseResolution: 0.005,
-            noiseScale: 0.25,
+            colorDistribution: "noise",
+            color: ['#F8FAFC', '#22D3EE', '#0EA5E9', '#2563EB'],
+            backgroundColor: '#020617',
+            flowDensity: 0.95,
+            flowIntensity: 0.2,
+            flowWidth: 0.95,
+            noiseResolution: 0.09,
+            noiseScale: 0.008,
+            layerCount: 2,
+            layerStep: 0.26,
         });
     }
 
@@ -92,13 +97,16 @@ class Examples {
 
     Example7(): Config {
         return new Config({
-            color: '#C3E8BD',
-            backgroundColor: '#5B7553',
-            flowDensity: 0.5,
-            flowIntensity: 1,
-            flowWidth: 2,
-            noiseResolution: 0.0025,
-            noiseScale: 0.4,
+            colorDistribution: "noise",
+            color: ['#F5F5F5', '#CFCFCF', '#8E8E8E', '#2E2E2E'],
+            backgroundColor: '#0A0A0A',
+            flowDensity: 0.95,
+            flowIntensity: 0.2,
+            flowWidth: 1,
+            noiseResolution: 0.075,
+            noiseScale: 0.009,
+            layerCount: 3,
+            layerStep: 0.14,
         });
     }
 

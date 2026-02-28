@@ -1,6 +1,6 @@
 import { vec2 } from 'gl-matrix';
 import Config from './config';
-import { GetCellPos, GetCellSize, GetNoise, SetDirection } from './noise';
+import { GetCellSize, GetNoise, SetDirection } from './noise';
 
 function DrawFlow(config: Config, canvas: HTMLCanvasElement, frame: number) {
     const canvasSize = Math.max(canvas.width, canvas.height);
@@ -9,9 +9,7 @@ function DrawFlow(config: Config, canvas: HTMLCanvasElement, frame: number) {
     const flowStep = 1;
 
     let position = vec2.fromValues(randomBetween(0, canvas.width), randomBetween(0, canvas.height));
-    let currentCell = GetCellPos(position, cellSize);
-
-    let currNoise = GetNoise(config, currentCell, layer);
+    let currNoise = GetNoise(config, position, cellSize, layer);
     let currDirection = vec2.create();
     SetDirection(currDirection, currNoise);
 
@@ -24,6 +22,8 @@ function DrawFlow(config: Config, canvas: HTMLCanvasElement, frame: number) {
     }
 
     ctx.lineWidth = config.flowWidth;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
     ctx.strokeStyle = determineColor(config, currNoise, frame);
     ctx.globalAlpha = config.flowIntensity;
 
@@ -31,14 +31,9 @@ function DrawFlow(config: Config, canvas: HTMLCanvasElement, frame: number) {
     ctx.moveTo(position[0], position[1])
     while (length < canvasSize && isOnCanvas(position, canvas)) {
         vec2.scaleAndAdd(position, position, currDirection, flowStep);
-        const cell = GetCellPos(position, cellSize);
-        if (cell[0] != currentCell[0] || cell[1] != currentCell[1]) {
-            ctx.lineTo(position[0], position[1]);
-            currentCell = cell;
-
-            currNoise = GetNoise(config, currentCell, layer);
-            SetDirection(currDirection, currNoise);
-        }
+        ctx.lineTo(position[0], position[1]);
+        currNoise = GetNoise(config, position, cellSize, layer);
+        SetDirection(currDirection, currNoise);
         length += flowStep;
     }
     ctx.lineTo(position[0], position[1]);

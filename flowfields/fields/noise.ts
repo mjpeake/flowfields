@@ -7,15 +7,11 @@ function GetCellSize(canvas: HTMLCanvasElement, config: Config) {
     return canvasSize / Math.floor(canvasSize * config.noiseResolution);
 }
 
-function GetCellPos(position: vec2, cellSize: number): number[] {
-    return [
-        Math.floor(position[0] / cellSize),
-        Math.floor(position[1] / cellSize),
-    ]
-}
-
-function GetNoise(config: Config, cell: number[], layer: number): number {
-    return noise(cell[0] * config.noiseScale, cell[1] * config.noiseScale, layer * config.noiseScale)
+function GetNoise(config: Config, position: vec2, cellSize: number, layer: number): number {
+    // Sample noise in continuous field-space to avoid visible block artifacts.
+    const fieldX = position[0] / cellSize;
+    const fieldY = position[1] / cellSize;
+    return noise(fieldX * config.noiseScale, fieldY * config.noiseScale, layer * config.noiseScale)
 }
 
 function SetDirection(out: vec2, noise: number) {
@@ -24,4 +20,4 @@ function SetDirection(out: vec2, noise: number) {
     out[1] = Math.sin(angle);
 }
 
-export { GetCellSize, GetNoise, SetDirection, GetCellPos };
+export { GetCellSize, GetNoise, SetDirection };
