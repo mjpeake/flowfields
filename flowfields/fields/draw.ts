@@ -6,7 +6,7 @@ function Draw(canvas: HTMLCanvasElement, config: Config): void {
     (async () => {
         const ctx = canvas.getContext("2d");
         if (!ctx) {
-            console.error(`element with id "${canvas.id}" does not contain canvas.`);
+            console.error(`[FlowFields] Element with id "${canvas.id}" does not contain canvas.`);
             return
         }
 
@@ -57,13 +57,13 @@ function drawFlows(canvas: HTMLCanvasElement, config: Config) {
             DrawFlow(config, canvas, frame);
         }
     }
-    console.log("generated flow field!");
+    console.log("[FlowFields] Generated flow field.");
 }
 
 function drawBackground(canvas: HTMLCanvasElement, config: Config) {
     const ctx = canvas.getContext("2d");
     if (!ctx) {
-        console.error(`element with id "${canvas.id}" does not contain canvas.`);
+        console.error(`[FlowFields] Element with id "${canvas.id}" does not contain canvas.`);
         return
     }
     ctx.fillStyle = config.backgroundColor;

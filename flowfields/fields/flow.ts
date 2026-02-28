@@ -17,7 +17,7 @@ function DrawFlow(config: Config, canvas: HTMLCanvasElement, frame: number) {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) {
-        console.error(`element with id "${canvas.id}" does not contain canvas.`);
+        console.error(`[FlowFields] Element with id "${canvas.id}" does not contain canvas.`);
         return
     }
 

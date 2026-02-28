@@ -6,7 +6,7 @@ function FlowField(id: string = "flowfield", config: Config): void {
     // Append the application canvas to the document body
     let container = <HTMLCanvasElement>document.getElementById(id);
     if (!container) {
-        console.error(`element with id "${id}" not found.`);
+        console.error(`[FlowFields] Element with id "${id}" not found.`);
         return;
     }
     let canvas: HTMLCanvasElement;
@@ -15,7 +15,7 @@ function FlowField(id: string = "flowfield", config: Config): void {
     } else {
         canvas = loadCanvas(container);
     }
-    console.log("using config", config)
+    console.log("[FlowFields] Using config", config)
     Draw(canvas, config);
 }
 
